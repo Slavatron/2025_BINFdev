@@ -73,10 +73,28 @@ annoColors <- list(
 ## Create a basic heatmap##
 ################################################
 ################################################
-
+pheatmap(sampleData, 
+         clustering_distance. = "euclidean",
+         clustering_method = "ward.D",
+         fontsize = 8,
+         filename = paste0("basic_heatmap_", outprefix, "_heatmap.pdf"))
 
 ################################################
 ################################################
 ## Create a basic heatmap##
 ################################################
 ################################################
+pheatmap(sampleData, 
+         clustering_distance. = "euclidean",
+         clustering_method = "ward.D",
+         color = colorRampPalette(c("blue", "white", "red"))(100),
+         annotation_col = annoData,
+         annotation_row = geneFunctions,
+         annotation_colors = annoColors,
+         annotation_names_col = FALSE,
+         annotation_names_row = FALSE,
+         annotation_legend = TRUE,
+         legend_breaks = c(min(as.matrix(sampleData)),0,max(as.matrix(sampleData))),
+         legend_labels = c("Low","Medium","High"),
+         fontsize = 8,
+         filename = paste0("complex_heatmap_", outprefix, "_heatmap.pdf"))
